@@ -1,10 +1,12 @@
 # Widoki
 
-Poniżej przedstawiono zestaw widoków utworzonych w bazie danych. 
-Widoki służą do generowania raportów oraz zestawień wymaganych w opisie projektu. 
-Ułatwiają one analizę danych bez konieczności pisania złożonych zapytań SQL.
+Poniżej przedstawiono zestaw widoków utworzonych w bazie danych.
 
-## Widok vw_OrderLinesNet
+Widoki służą do generowania raportów oraz zestawień wymaganych w opisie projektu.  
+
+Ułatwiają one analizę danych bez konieczności pisania złożonych zapytań SQL.  
+
+## 1. Widok vw_OrderLinesNet
 
 Wyświetla szczegółowe informacje o pozycjach zamówień wraz z naliczonymi rabatami.
 Widok oblicza wartości brutto oraz końcowe wartości netto każdej pozycji zamówienia.
@@ -60,7 +62,7 @@ JOIN dbo.OrderStatus os       ON os.StatusID = o.StatusID;
 GO
 ```
 
-## Widok vw_SalesByCategory_Weekly
+## 2. Widok vw_SalesByCategory_Weekly
 
 Wyświetla tygodniowe statystyki sprzedaży z podziałem na kategorie produktów.
 Pokazuje liczbę zamówień, ilość sprzedanych produktów oraz przychód netto.
@@ -85,7 +87,7 @@ GROUP BY
 GO
 ```
 
-## Widok vw_SalesByCategory_Monthly
+## 3. Widok vw_SalesByCategory_Monthly
 
 Wyświetla miesięczne statystyki sprzedaży z podziałem na kategorie produktów.
 Umożliwia analizę przychodów i ilości sprzedaży w ujęciu miesięcznym.
@@ -110,7 +112,7 @@ GROUP BY
 GO
 ```
 
-## Widok vw_UnitProductionCost_PerProduct
+## 4. Widok vw_UnitProductionCost_PerProduct
 
 Wyświetla jednostkowy koszt produkcji oraz czas produkcji dla każdego produktu.
 Widok pozwala analizować koszty wytwarzania pojedynczych produktów.
@@ -131,7 +133,7 @@ JOIN dbo.ProductCategories pc ON pc.CategoryID = p.CategoryID;
 GO
 ```
 
-## Widok vw_ProductionCostByCategory_Yearly
+## 5. Widok vw_ProductionCostByCategory_Yearly
 
 Wyświetla roczne koszty planowanej produkcji z podziałem na kategorie produktów.
 Koszt liczony jest na podstawie ilości planowanej produkcji i kosztu jednostkowego.
@@ -155,7 +157,7 @@ GROUP BY
 GO
 ```
 
-## Widok vw_ProductionCostByCategory_Quarterly
+## 6. Widok vw_ProductionCostByCategory_Quarterly
 
 Wyświetla kwartalne koszty planowanej produkcji dla poszczególnych kategorii produktów.
 Umożliwia analizę kosztów produkcji w ujęciu kwartalnym.
@@ -181,7 +183,7 @@ GROUP BY
 GO
 ```
 
-## Widok vw_ProductionCostByCategory_Monthly
+## 7. Widok vw_ProductionCostByCategory_Monthly
 
 Wyświetla miesięczne koszty planowanej produkcji z podziałem na kategorie produktów.
 Pozwala śledzić zmiany kosztów produkcji w czasie.
@@ -207,7 +209,7 @@ GROUP BY
 GO
 ```
 
-## Widok vw_ProductionCost_Weekly
+## 8. Widok vw_ProductionCost_Weekly
 
 Wyświetla tygodniowe koszty planowanej produkcji dla całej firmy.
 Widok służy do szybkiej analizy kosztów produkcji w krótkich okresach czasu.
@@ -227,7 +229,7 @@ GROUP BY
 GO
 ```
 
-## Widok vw_ProductionCost_Monthly
+## 9. Widok vw_ProductionCost_Monthly
 
 Wyświetla miesięczne koszty planowanej produkcji.
 Umożliwia porównywanie kosztów produkcji pomiędzy kolejnymi miesiącami.
@@ -247,7 +249,7 @@ GROUP BY
 GO
 ```
 
-## Widok vw_CurrentProductStock
+## 10. Widok vw_CurrentProductStock
 
 Wyświetla aktualne stany magazynowe produktów.
 Pokazuje ilość dostępną, zarezerwowaną oraz faktycznie wolną w magazynie.
@@ -269,7 +271,7 @@ JOIN dbo.ProductCategories pc ON pc.CategoryID = p.CategoryID;
 GO
 ```
 
-## Widok vw_PlannedProduction_Products
+## 11. Widok vw_PlannedProduction_Products
 
 Wyświetla produkty zaplanowane do produkcji wraz z terminami oraz statusem zleceń.
 Widok służy do przeglądania aktualnego planu produkcji.
@@ -299,7 +301,7 @@ JOIN dbo.ProductionOrderStatus pos ON pos.ProductionOrderStatusID = po.Productio
 GO
 ```
 
-## Widok vw_ProductionPlan_WithLoad
+## 12. Widok vw_ProductionPlan_WithLoad
 
 Wyświetla plan produkcji wraz z obciążeniem stanowisk roboczych.
 Pokazuje wymagany czas produkcji oraz dostępne moce przerobowe.
@@ -325,7 +327,7 @@ JOIN dbo.WorkCenterCapacity cap ON cap.WorkCenterID = po.WorkCenterID;
 GO
 ```
 
-## Widok vw_CustomerOrderHistory_WithDiscounts
+## 13. Widok vw_CustomerOrderHistory_WithDiscounts
 
 Wyświetla historię zamówień klientów wraz z zastosowanymi rabatami.
 Widok umożliwia analizę zakupów klientów w różnych przedziałach czasowych.
@@ -371,7 +373,7 @@ JOIN dbo.ProductCategories pc ON pc.CategoryID = p.CategoryID;
 GO
 ```
 
-## Widok vw_CurrentComponentStock
+## 14. Widok vw_CurrentComponentStock
 
 Wyświetla aktualne stany magazynowe komponentów wykorzystywanych w produkcji.
 Pokazuje ilość dostępną, zarezerwowaną oraz wolną dla każdego komponentu.
@@ -395,7 +397,7 @@ JOIN dbo.ComponentCategories cc ON cc.ComponentCategoryID = c.ComponentCategoryI
 GO
 ```
 
-## Widok vw_ComponentDemand_ForPlannedProduction
+## 15. Widok vw_ComponentDemand_ForPlannedProduction
 
 Wyświetla zapotrzebowanie na komponenty wynikające z planu produkcji.
 Widok wspiera planowanie materiałowe (MRP) i kontrolę dostępności komponentów.
