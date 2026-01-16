@@ -2,7 +2,7 @@
 
 ## BillOfMaterials
 Tabela przechowująca informacje o materiałach potrzebnych do stworzenia danego produktu
-- **ProductID** - identyfikator produktu (klucz obcy Products.ProductID)
+- **ProductID** (int) - identyfikator produktu (klucz obcy Products.ProductID)
 - **ComponentID**
 - **QuantityPerProduct**
 
