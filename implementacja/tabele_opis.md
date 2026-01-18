@@ -73,93 +73,115 @@ Tabela przechowująca informacje o materiałach potrzebnych do stworzenia danego
 - **DeliveryStatus**
 
 ## Departments
-- **DepartmentID**
-- **DepartmentName**
+Tabela przechowująca listę działów firmy (np. produkcja, logistyka, sprzedaż).
+
+- **DepartmentID** (int) – identyfikator działu 
+- **DepartmentName** (varchar(100)) – nazwa działu
+- **Address** (varchar(100)) – adres/lokalizacja działu 
+
 
 ## Employees
-- **EmployeeID**
-- **LastName**
-- **FirstName**
-- **Title**
-- **BirthDate**
-- **HireDate**
-- **Address**
-- **City**
-- **Region**
-- **PostalCode**
-- **Country**
-- **HomePhone**
-- **DepartmentID**
+Tabela przechowująca dane pracowników oraz ich przypisanie do działu.
+
+- **EmployeeID** (int) – identyfikator pracownika
+- **LastName** (varchar(50)) – nazwisko pracownika
+- **FirstName** (varchar(50)) – imię pracownika
+- **Title** (varchar(50)) – stanowisko pracownika
+- **BirthDate** (datetime) – data urodzenia pracownika
+- **HireDate** (datetime) – data zatrudnienia pracownika
+- **Address** (varchar(100)) – adres zamieszkania pracownika
+- **City** (varchar(50)) – miasto zamieszkania
+- **Region** (varchar(50)) – region/województwo
+- **PostalCode** (varchar(20)) – kod pocztowy
+- **Country** (varchar(50)) – kraj
+- **HomePhone** (varchar(30)) – telefon kontaktowy pracownika
+- **DepartmentID** identyfikator działu, do którego przypisany jest pracownik (powiązanie z `Departments`)
 
 ## InvoiceItems
-- **InvoiceItemID**
-- **InvoiceID**
-- **ProductID**
-- **Description**
-- **Quantity**
-- **UnitNetPrice**
-- **VatRate**
-- **DiscountPercent**
+Tabela przechowująca szczegółowe pozycje znajdujące się na fakturach sprzedaży.
+
+- **InvoiceItemID (int)** – unikalny identyfikator pozycji faktury  
+- **InvoiceID (int)** – identyfikator faktury, do której należy dana pozycja (powiązanie z tabelą `Invoices`)  
+- **ProductID (int)** – identyfikator produktu objętego pozycją faktury (powiązanie z tabelą `Products`)  
+- **Description (varchar)** – opis pozycji na fakturze (np. nazwa handlowa produktu lub dodatkowe informacje)  
+- **Quantity (decimal)** – liczba sprzedanych sztuk produktu  
+- **UnitNetPrice (decimal)** – cena jednostkowa netto produktu  
+- **VatRate (float)** – stawka podatku VAT obowiązująca dla danej pozycji  
+- **DiscountPercent (float)** – procentowy rabat zastosowany do pozycji
 
 ## Invoices
-- **InvoiceID**
-- **OrderID**
-- **InvoiceNumber**
-- **InvoiceDate**
-- **DueDate**
-- **TotalNet**
-- **TotalVat**
-- **TotalGross**
+Tabela przechowująca podstawowe dane faktur sprzedaży wystawianych do zamówień klientów.
+
+- **InvoiceID (int)** – identyfikator faktury (klucz główny)  
+- **OrderID (int)** – identyfikator zamówienia, którego dotyczy faktura (powiązanie z tabelą `Orders`)  
+- **InvoiceNumber (varchar)** – numer faktury  
+- **InvoiceDate (datetime)** – data wystawienia faktury  
+- **DueDate (datetime)** – termin płatności faktury  
+- **TotalNet (decimal)** – łączna wartość netto faktury  
+- **TotalVat (decimal)** – łączna kwota podatku VAT  
+- **TotalGross (decimal)** – łączna wartość brutto faktury
 
 ## OrderDetails
-- **OrderDetailID**
-- **OrderID**
-- **ProductID**
-- **UnitPrice**
-- **Quantity**
-- **Discount**
+Tabela przechowująca szczegółowe pozycje zamówień klientów.
+
+- **OrderDetailID (int)** – identyfikator pozycji zamówienia  
+- **OrderID (int)** – identyfikator zamówienia (powiązanie z tabelą `Orders`)  
+- **ProductID (int)** – identyfikator zamówionego produktu (powiązanie z tabelą `Products`)  
+- **UnitPrice (decimal)** – cena jednostkowa produktu w momencie składania zamówienia  
+- **Quantity (decimal)** – liczba zamówionych sztuk produktu  
+- **Discount (float)** – rabat udzielony dla danej pozycji zamówienia 
 
 ## OrderStatus
-- **StatusID**
-- **StatusCategory**
+Tabela przechowująca możliwe stany realizacji zamówień klientów.
+
+- **StatusID (int)** – identyfikator statusu zamówienia  
+- **StatusCategory (varchar)** – nazwa lub kategoria statusu (np. „Nowe”, „W realizacji”, „Wysłane”, „Zakończone”, „Anulowane”)
 
 ## Orders
-- **OrderID**
-- **CustomerID**
-- **EmployeeID**
-- **OrderDate**
-- **RequiredDate**
-- **ShippedDate**
-- **ShipperID**
-- **Freight**
-- **ShipName**
-- **ShipAddress**
-- **ShipCity**
-- **ShipRegion**
-- **ShipPostalCode**
-- **ShipCountry**
-- **OrderDiscountPercent**
-- **StatusID**
+Tabela przechowująca zamówienia składane przez klientów.
+
+- **OrderID (int)** – identyfikator zamówienia  
+- **CustomerID (int)** – identyfikator klienta składającego zamówienie  
+- **EmployeeID (int)** – identyfikator pracownika obsługującego zamówienie  
+- **OrderDate (datetime)** – data złożenia zamówienia  
+- **RequiredDate (datetime)** – oczekiwana data realizacji zamówienia  
+- **ShippedDate (datetime)** – data wysyłki zamówienia  
+- **ShipperID (int)** – identyfikator firmy przewozowej realizującej dostawę  
+- **Freight (decimal)** – koszt transportu zamówienia  
+- **ShipName (varchar)** – nazwa odbiorcy przesyłki  
+- **ShipAddress (varchar)** – adres dostawy  
+- **ShipCity (varchar)** – miasto dostawy  
+- **ShipRegion (varchar)** – region/województwo dostawy  
+- **ShipPostalCode (varchar)** – kod pocztowy dostawy  
+- **ShipCountry (varchar)** – kraj dostawy  
+- **OrderDiscountPercent (float)** – rabat procentowy zastosowany do całego zamówienia  
+- **StatusID (int)** – identyfikator aktualnego statusu zamówienia (powiązanie z tabelą `OrderStatus`)
 
 ## Payments
-- **PaymentID**
-- **InvoiceID**
-- **PaymentDate**
-- **Amount**
-- **PaymentMethod**
-- **PaymentStatus**
+Tabela przechowująca informacje o płatnościach dokonanych za faktury.
+
+- **PaymentID (int)** – identyfikator płatności  
+- **InvoiceID (int)** – identyfikator faktury, której dotyczy płatność (powiązanie z tabelą `Invoices`)  
+- **PaymentDate (datetime)** – data dokonania płatności  
+- **Amount (decimal)** – kwota zapłaty  
+- **PaymentMethod (varchar)** – metoda płatności (np. przelew, karta, gotówka)  
+- **PaymentStatus (varchar)** – status płatności (np. „oczekująca”, „zaksięgowana”, „odrzucona”)
 
 ## ProductCategories
-- **CategoryID**
-- **CategoryName**
-- **Description**
-- **ProductVatRate**
+Tabela kategorii produktów oferowanych przez firmę.
+
+- **CategoryID (int)** – identyfikator kategorii produktu  
+- **CategoryName (varchar)** – nazwa kategorii (np. „Stoły”, „Krzesła”, „Szafy”)  
+- **Description (text)** – opis kategorii produktów  
+- **ProductVatRate (float)** – domyślna stawka VAT przypisana do produktów z danej kategorii
 
 ## ProductStockRegister
-- **ProductStockEntryID**
-- **ProductID**
-- **EntryDate**
-- **Amount**
+Tabela rejestrująca historię zmian stanów magazynowych produktów.
+
+- **ProductStockEntryID (int)** – identyfikator wpisu w rejestrze magazynowym  
+- **ProductID (int)** – identyfikator produktu, którego dotyczy wpis (powiązanie z tabelą `Products`)  
+- **EntryDate (datetime)** – data i czas wykonania operacji magazynowej  
+- **Amount (decimal)** – zmiana ilości produktu (wartość dodatnia – przyjęcie, ujemna – wydanie)
 
 ## ProductStocks
 Tabela pokazująca stan magazynu produktów.
