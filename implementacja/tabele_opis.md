@@ -1,76 +1,113 @@
 # Opis tabel
 
 ## BillOfMaterials
-Tabela przechowująca informacje o materiałach potrzebnych do stworzenia danego produktu
-- **ProductID** (int) - identyfikator produktu (klucz obcy Products.ProductID)
-- **ComponentID**
-- **QuantityPerProduct**
+Tabela przechowująca informacje o komponentach potrzebnych do wyprodukowania danego produktu oraz ich ilości.
+
+- **ProductID** (int) – identyfikator produktu (klucz obcy → Products.ProductID)
+- **ComponentID** (int) – identyfikator komponentu (klucz obcy → Components.ComponentID)
+- **QuantityPerProduct** (decimal) – ilość komponentu potrzebna do wyprodukowania jednej sztuki produktu
+
+---
 
 ## Complaints
-- **ComplaintID**
-- **OrderID**
-- **ProductID**
-- **EmployeeID**
-- **ComplaintDate**
+Tabela przechowująca zgłoszenia reklamacyjne dotyczące zamówień i produktów.
+
+- **ComplaintID** (int) – identyfikator reklamacji  
+- **OrderID** (int) – identyfikator zamówienia, którego dotyczy reklamacja  
+- **ProductID** (int) – identyfikator reklamowanego produktu  
+- **EmployeeID** (int) – pracownik obsługujący reklamację  
+- **ComplaintDate** (datetime) – data zgłoszenia reklamacji  
+
+---
 
 ## ComponentCategories
-- **ComponentCategoryID**
-- **CategoryName**
+Tabela przechowująca kategorie komponentów wykorzystywanych w procesie produkcji.
+
+- **ComponentCategoryID** (int) – identyfikator kategorii komponentu  
+- **CategoryName** (varchar) – nazwa kategorii  
+
+---
 
 ## ComponentDeliveries
-- **ComponentDeliveryID**
-- **ComponentID**
-- **Quantity**
-- **DateOfDelivery**
+Tabela rejestrująca dostawy komponentów do magazynu.
+
+- **ComponentDeliveryID** (int) – identyfikator dostawy komponentu  
+- **ComponentID** (int) – identyfikator dostarczonego komponentu  
+- **Quantity** (decimal) – ilość dostarczonych komponentów  
+- **DateOfDelivery** (datetime) – data dostawy  
+
+---
 
 ## ComponentReservations
-- **ComponentReservationID**
-- **ComponentID**
-- **OrderDetailID**
-- **ProductionOrderID**
-- **ReservedQuantity**
+Tabela przechowująca informacje o rezerwacjach komponentów na potrzeby zamówień lub produkcji.
+
+- **ComponentReservationID** (int) – identyfikator rezerwacji  
+- **ComponentID** (int) – identyfikator komponentu  
+- **OrderDetailID** (int) – pozycja zamówienia powiązana z rezerwacją (opcjonalnie)  
+- **ProductionOrderID** (int) – zlecenie produkcyjne powiązane z rezerwacją (opcjonalnie)  
+- **ReservedQuantity** (decimal) – ilość zarezerwowanych komponentów  
+
+---
 
 ## ComponentStockRegister
-- **ComponentStockEntryID**
-- **ComponentID**
-- **EntryDate**
-- **Amount**
+Tabela przechowująca historię wszystkich zmian stanów magazynowych komponentów.
+
+- **ComponentStockEntryID** (int) – identyfikator wpisu magazynowego  
+- **ComponentID** (int) – identyfikator komponentu  
+- **EntryDate** (datetime) – data operacji magazynowej  
+- **Amount** (decimal) – zmiana ilości komponentów (wartość dodatnia lub ujemna)  
+
+---
 
 ## ComponentStocks
-- **ComponentID**
-- **QuantityAvailable**
-- **QuantityReserved**
+Tabela przechowująca aktualne stany magazynowe komponentów.
+
+- **ComponentID** (int) – identyfikator komponentu  
+- **QuantityAvailable** (decimal) – ilość dostępna w magazynie  
+- **QuantityReserved** (decimal) – ilość zarezerwowana  
+
+---
 
 ## Components
-- **ComponentID**
-- **ComponentName**
-- **ComponentCategoryID**
-- **UnitOfMeasure**
-- **UnitCost**
+Tabela przechowująca informacje o komponentach wykorzystywanych do produkcji produktów.
+
+- **ComponentID** (int) – identyfikator komponentu  
+- **ComponentName** (varchar) – nazwa komponentu  
+- **ComponentCategoryID** (int) – kategoria komponentu  
+- **UnitOfMeasure** (varchar) – jednostka miary  
+- **UnitCost** (decimal) – koszt jednostkowy komponentu  
+
+---
 
 ## Customers
-- **CustomerID**
-- **CompanyName**
-- **ContactName**
-- **ContactTitle**
-- **IsBusiness**
-- **NIP**
-- **Address**
-- **City**
-- **Region**
-- **PostalCode**
-- **Country**
-- **Phone**
-- **Email**
+Tabela przechowująca dane klientów indywidualnych oraz firmowych składających zamówienia.
+
+- **CustomerID** (int) – identyfikator klienta  
+- **CompanyName** (varchar) – nazwa firmy (opcjonalnie)  
+- **ContactName** (varchar) – osoba kontaktowa  
+- **ContactTitle** (varchar) – stanowisko osoby kontaktowej  
+- **IsBusiness** (bit) – informacja, czy klient jest firmą  
+- **NIP** (varchar) – numer NIP klienta biznesowego  
+- **Address** (varchar) – adres  
+- **City** (varchar) – miasto  
+- **Region** (varchar) – region  
+- **PostalCode** (varchar) – kod pocztowy  
+- **Country** (varchar) – kraj  
+- **Phone** (varchar) – numer telefonu  
+- **Email** (varchar) – adres e-mail  
+
+---
 
 ## Deliveries
-- **DeliveryID**
-- **ParcelNumber**
-- **ShippingDate**
-- **EstimatedDeliveryDate**
-- **ShipperID**
-- **OrderID**
-- **DeliveryStatus**
+Tabela przechowująca informacje o dostawach realizowanych dla zamówień klientów.
+
+- **DeliveryID** (int) – identyfikator dostawy  
+- **ParcelNumber** (varchar) – numer przesyłki  
+- **ShippingDate** (datetime) – data wysyłki  
+- **EstimatedDeliveryDate** (datetime) – planowana data dostarczenia  
+- **ShipperID** (int) – firma realizująca dostawę  
+- **OrderID** (int) – identyfikator zamówienia  
+- **DeliveryStatus** (varchar) – status dostawy  
 
 ## Departments
 Tabela przechowująca listę działów firmy (np. produkcja, logistyka, sprzedaż).
