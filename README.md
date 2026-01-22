@@ -54,8 +54,9 @@ oraz przyjętymi założeniami projektowymi.
       obcymi oraz warunkami integralności.
 
 2. **Implementacja**
-   1. Utworzenie bazy danych w środowisku **Microsoft SQL Server** oraz implementacja tabel
-      i warunków integralności.
+   1. Utworzenie bazy danych w środowisku **Microsoft SQL Server** na platformie Azure oraz implementacja tabel
+      i warunków integralności. \
+      Ze względów bezpieczeństwa dostęp do bazy ograniczony został do wybranych adresów IP (IP whitelisting)
    2. Przygotowanie danych testowych umożliwiających weryfikację poprawności działania bazy
       (środowisko **Azure Data Studio**). // tu możliwa zmiana
    3. Implementacja **funkcji** oraz **procedur**
