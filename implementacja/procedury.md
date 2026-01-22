@@ -691,7 +691,7 @@ BEGIN
             THROW 51047, 'Błąd: Podana kategoria komponentu nie istnieje.', 1;
 
         IF @UnitCost <= 0
-            THROW 51048, 'Błąd: Koszt jednostkowy (UnitCost) musi być większy od zera.', 1; [cite_start]
+            THROW 51048, 'Błąd: Koszt jednostkowy (UnitCost) musi być większy od zera.', 1;
 
         -- 2. Dodanie Komponentu
         INSERT INTO [dbo].[Components] (
