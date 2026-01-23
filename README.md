@@ -40,7 +40,7 @@ schematu bazy danych:
 - Proces sprzedaży obejmuje faktury, płatności oraz dostawy, które są przechowywane niezależnie w bazie danych.
 
 ## Schemat ukończonej bazy
-// do wstawienia
+Schemat dokumentacji dostępny jest w końcowej dokumentacji bazy dostępnej w pliku [`Dokumentacja_GR12_Sokolowski_Stoklosa_Bernacki.pdf`](Dokumentacja_GR12_Sokolowski_Stoklosa_Bernacki)
 
 ## Opis pracy nad projektem
 
@@ -58,7 +58,7 @@ oraz przyjętymi założeniami projektowymi.
       i warunków integralności. \
       Ze względów bezpieczeństwa dostęp do bazy ograniczony został do wybranych adresów IP (IP whitelisting)
    2. Przygotowanie danych testowych umożliwiających weryfikację poprawności działania bazy
-      (środowisko **Azure Data Studio**). // tu możliwa zmiana
+      (środowisko **Azure Data Studio** oraz **DataGrip**).
    3. Implementacja **funkcji** oraz **procedur**
    4. Implementacja **triggerów** oraz **widoków** w **Microsoft SQL Server**, wspierających
       integralność danych oraz raportowanie wymagane w projekcie.
