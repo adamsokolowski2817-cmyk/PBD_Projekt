@@ -211,6 +211,54 @@ EXEC [dbo].[sp_RegisterDelivery]
     @NewDeliveryID = @OutputDeliveryID OUTPUT;
 ```
 
+## Generowanie invoices
+```python
+import random
+
+# Konfiguracja
+FILENAME = "generate_invoices.sql"
+ORDER_START = 4
+ORDER_END = 204
+
+# Dostępne terminy płatności do losowania (w dniach)
+PAYMENT_OPTIONS = [7, 14, 21, 30]
+
+def generate_invoices_sql():
+    with open(FILENAME, "w", encoding="utf-8") as f:
+        f.write("USE [projekt];\n")
+        f.write("GO\n\n")
+        
+        f.write("DECLARE @OutInvoiceID INT;\n\n")
+        
+        print(f"Generowanie faktur dla zamówień {ORDER_START}-{ORDER_END}...")
+
+        for order_id in range(ORDER_START, ORDER_END + 1):
+            # Losujemy termin płatności dla urozmaicenia danych
+            payment_days = random.choice(PAYMENT_OPTIONS)
+            
+            sql_stm = (
+                f"-- Faktura dla zamówienia {order_id}\n"
+                f"EXEC [dbo].[sp_GenerateInvoice]\n"
+                f"    @OrderID = {order_id},\n"
+                f"    @PaymentDays = {payment_days},\n"
+                f"    @NewInvoiceID = @OutInvoiceID OUTPUT;\n"
+            )
+            
+            f.write(sql_stm)
+            f.write("\n")
+
+    print(f"Gotowe! Skrypt zapisano w pliku: {FILENAME}")
+
+if __name__ == "__main__":
+    generate_invoices_sql()
+```
+Przykład
+``` sql
+EXEC [dbo].[sp_GenerateInvoice]
+    @OrderID = 4,
+    @PaymentDays = 21,
+    @NewInvoiceID = @OutInvoiceID OUTPUT;
+```
 
 ## Pozostałe generatory
 Pozostałe wygenerowane elementy bazy zostały zaimplementowane do bazy i są dostępne do wyeksportowania po poprawnym połączeniem z bazą na serwerze Azure
