@@ -40,7 +40,9 @@ schematu bazy danych:
 - Proces sprzedaży obejmuje faktury, płatności oraz dostawy, które są przechowywane niezależnie w bazie danych.
 
 ## Schemat ukończonej bazy
-Schemat bazy dostępny jest w końcowej dokumentacji projektu dostępnej w pliku [`Dokumentacja_GR12_Sokolowski_Stoklosa_Bernacki.pdf`](Dokumentacja_GR12_Sokolowski_Stoklosa_Bernacki.pdf#page=3)
+![Schemat bazy](/schemat.png)
+
+Szczegółowy schemat wraz podziałem na poszczególne sekcje  dostępny jest w końcowej dokumentacji projektu dostępnej w pliku [`Dokumentacja_GR12_Sokolowski_Stoklosa_Bernacki.pdf`](Dokumentacja_GR12_Sokolowski_Stoklosa_Bernacki.pdf#page=3)
 
 ## Opis pracy nad projektem
 
